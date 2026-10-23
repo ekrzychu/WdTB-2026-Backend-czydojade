@@ -1,8 +1,20 @@
-# WdTB-2026-Backend
+# CzyDojade · WdTB-2026-Backend-czydojade
 
-Szablon projektu laboratoryjnego z przedmiotu **Wprowadzenie do technologii backendowych** (Uniwersytet WSB Merito Wrocław).
+CzyDojade to projekt aplikacji do śledzenia na bieżąco lokalizacji i opóźnień komunikacji miejskiej we Wrocławiu,
+realizowany na przedmiocie **Wprowadzenie do technologii backendowych** (Uniwersytet WSB Merito Wrocław).
+Pomoże pasażerom sprawdzić, gdzie jest ich autobus lub tramwaj i czy dotrze na przystanek zgodnie z rozkładem.
+Grupa docelowa to mieszkańcy Wrocławia, szczególnie osoby codziennie dojeżdżające do pracy i na uczelnię.
 
-Materiały przygotował: **Wojciech Koszela**, prowadzący
+Autorzy:
+
+- **Krzysztof Jaroch**, nr indeksu **113568**, s710786@student.wroclaw.merito.pl
+- **Karol Kuźniak**, nr indeksu **81737**, wrx75984@student.wroclaw.merito.pl
+
+Planowane funkcje: monitorowanie położenia autobusów i tramwajów, sprawdzanie opóźnień i przewidywanych godzin
+przyjazdu oraz przeglądanie historii i statystyk punktualności linii. Zakres LAB 01 obejmuje konfigurację projektu,
+konta zespołu i wizytówkę; pobieranie i przetwarzanie danych komunikacji miejskiej nie jest jeszcze zaimplementowane.
+
+Szablon i materiały przygotował: **Wojciech Koszela**, prowadzący
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Wojciech%20Koszela-0A66C2?logo=linkedin&logoColor=white)](https://www.linkedin.com/in/wkoszela/)
 [![GitHub](https://img.shields.io/badge/GitHub-wkoszela-181717?logo=github&logoColor=white)](https://github.com/wkoszela)
@@ -15,7 +27,10 @@ Te same strony znajdują się w katalogu [`docs/`](docs/index.html); po sklonowa
 
 ## W skrócie
 
-- Zespół 3 osoby, jedno repozytorium: **fork** tego szablonu przemianowany na **`WdTB-2026-Backend-<nazwaprojektu>`**.
+- Zespół 2 osoby, repozytorium: [WdTB-2026-Backend-czydojade](https://github.com/ekrzychu/WdTB-2026-Backend-czydojade).
+- Pakiet `pl.wsb.czydojade`, klasa startowa `CzydojadeApplication`, artifactId `wdtb-2026-backend-czydojade`, wersja `1.0.0-113568-81737`.
+- Reguła R1.03 wymaga co najmniej 3 kont poza demo. Nasz zespół ma 2 osoby, więc ten test pozostaje niespełniony;
+  nie dodajemy fikcyjnego konta i nie zmieniamy reguł. Wyjątek wymaga uzgodnienia z prowadzącym.
 - Każdy zespół buduje backend własnego projektu: encje i relacje, repozytoria i zapytania, serwisy, REST API.
 - Wymagania każdego laboratorium sprawdzają automatyczne testy (reguły projektu) w GitHub Actions. Tag `lab-N` uruchamia reguły laboratorium N.
 
@@ -58,15 +73,15 @@ Wymagania: JDK 21 lub nowsze, IntelliJ IDEA (Maven i Git są wbudowane), konto n
 ### Pobranie projektu
 
 1. *File → New → Project from Version Control* (na ekranie powitalnym: **Clone Repository**).
-2. URL: `https://github.com/<login>/WdTB-2026-Backend-<nazwaprojektu>.git` → **Clone** → **Trust Project**.
+2. URL: `https://github.com/ekrzychu/WdTB-2026-Backend-czydojade.git` → **Clone** → **Trust Project**.
 3. IntelliJ rozpozna projekt Maven i pobierze zależności (pasek postępu na dole okna, za pierwszym razem kilka minut).
 4. Brak JDK? *File → Project Structure → Project → SDK → Download JDK* → wersja 21 lub nowsza.
 
 ### Uruchomienie aplikacji
 
-1. Otwórzcie klasę `ProjektApplication` (po zmianie nazwy: `<NazwaProjektu>Application`).
-2. Kliknijcie zieloną strzałkę obok metody `main` → *Run 'ProjektApplication'*.
-3. W oknie *Run* na dole poczekajcie na `Started ProjektApplication in … seconds`.
+1. Otwórzcie klasę `pl.wsb.czydojade.CzydojadeApplication`.
+2. Kliknijcie zieloną strzałkę obok metody `main` → *Run 'CzydojadeApplication'*.
+3. W oknie *Run* na dole poczekajcie na `Started CzydojadeApplication in … seconds`.
 4. Otwórzcie http://localhost:8080 (strona startowa) i http://localhost:8080/h2-console (baza danych:
    JDBC URL `jdbc:h2:file:./data/wdtb`, użytkownik `sa`, hasło puste).
 
@@ -90,18 +105,22 @@ Dane dopisane ręcznie w konsoli H2 znikają po restarcie; to, co ma zostać, do
 
 Wynik jest w oknie *Run*: przy każdej regule zielony albo czerwony znak, a przy czerwonej opis, co poprawić.
 
-## Co zmodyfikować na LAB 01
+Z terminala, jeśli Maven jest w `PATH`: `mvn clean verify` (Java 21, reguły LAB 01), a aplikacja:
+`mvn spring-boot:run`. Przy obecnych dwóch kontach zespołu `verify` zgłosi błąd R1.03 opisany powyżej.
 
-Nazwę projektu w repozytorium, pakiecie, klasie startowej i `artifactId` zmieniacie, gdy zespół wybierze nazwę (LAB 01, krok C3).
+## Zmiany na LAB 01
+
+Projekt otrzymał nazwę CzyDojade zgodnie z krokiem C3 instrukcji LAB 01.
 
 | Plik | Zmiana | Reguła |
 |---|---|---|
-| pakiet `pl.wsb.projekt` | *Refactor → Rename* na pakiecie → `pl.wsb.<nazwaprojektu>` | R1.01 |
-| `ProjektApplication.java` | *Refactor → Rename* na klasie → `<NazwaProjektu>Application` | R1.01 |
-| `pom.xml`, `<artifactId>` | `wdtb-2026-backend-<nazwaprojektu>` | R1.01 |
-| `pom.xml`, `<version>` | `1.0.0-<nrindeksu1>-<nrindeksu2>-<nrindeksu3>` | R1.05 |
-| `src/main/resources/data.sql` | konta wszystkich osób z zespołu (wzór w komentarzu na końcu pliku) | R1.03 |
-| `src/main/resources/static/index.html` | wizytówka projektu: zastąpcie wszystkie `[uzupełnij]` | R1.04 |
+| pakiet `pl.wsb.czydojade` | przeniesiono klasę startową oraz istniejący moduł kont | R1.01 |
+| `CzydojadeApplication.java` | zmieniono nazwę klasy startowej | R1.01 |
+| `pom.xml`, `<artifactId>` | `wdtb-2026-backend-czydojade` | R1.01 |
+| `pom.xml`, `<version>` | `1.0.0-113568-81737` | R1.05 |
+| `src/main/resources/data.sql` | dodano oba konta zespołu, zachowując cztery konta demo | R1.03 (wyjątek opisany wyżej) |
+| `src/main/resources/static/index.html` | uzupełniono wizytówkę, zachowując wygląd i sekcje techniczne | R1.04 |
+| `src/main/resources/application.properties` | dopasowano nazwę aplikacji do projektu | — |
 
 Na LAB 01 wystarczy, że zmiany zacommituje jedna osoba z zespołu. Zmiany wysyłacie bezpośrednio na `main`
 (*Git → Commit*, potem *Push*); przed pracą zróbcie *Git → Pull*.
@@ -111,9 +130,9 @@ Szczegóły krok po kroku: `docs/lab01.html`.
 
 ## Konwencja nazw
 
-| Gdzie | Wzór |
+| Gdzie | Nazwa w projekcie |
 |---|---|
-| repozytorium (fork, po zmianie nazwy) | `WdTB-2026-Backend-<nazwaprojektu>` |
-| pakiet Javy | `pl.wsb.<nazwaprojektu>` |
-| `artifactId` w `pom.xml` | `wdtb-2026-backend-<nazwaprojektu>` |
-| `version` w `pom.xml` | `1.0.0-<nrindeksu1>-<nrindeksu2>-<nrindeksu3>` |
+| repozytorium (fork) | `WdTB-2026-Backend-czydojade` |
+| pakiet Javy | `pl.wsb.czydojade` |
+| `artifactId` w `pom.xml` | `wdtb-2026-backend-czydojade` |
+| `version` w `pom.xml` | `1.0.0-113568-81737` |
