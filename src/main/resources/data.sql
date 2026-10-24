@@ -10,6 +10,6 @@ insert into user_account (email, display_name, role, created_at) values
 -- LAB 01: konta dwuosobowego zespołu CzyDojade.
 insert into user_account (email, display_name, role, created_at) values
     ('s710786@student.wroclaw.merito.pl', 'Krzysztof Jaroch', 'USER', current_timestamp),
-    ('wrx75984@student.wroclaw.merito.pl', 'Karol Kuźniak', 'USER', current_timestamp);
+    ('wrx75984@student.wroclaw.merito.pl', 'Karol Kuźniak', 'USER', current_timestamp),
     ('trzecia_osoba@student.wroclaw.merito.pl', 'Trzecia Osoba', 'USER', current_timestamp);
 
