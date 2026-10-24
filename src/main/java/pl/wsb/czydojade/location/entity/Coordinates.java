@@ -1,21 +1,21 @@
-package pl.wsb.czydojade.stops.entity;
+package pl.wsb.czydojade.location.entity;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 
 @Embeddable
-public class StopCoordinates {
+public class Coordinates {
 
-    @Column(name = "latitude", nullable = false, precision = 9, scale = 6)
+    @Column(name = "latitude", precision = 9, scale = 6)
     private BigDecimal latitude;
 
-    @Column(name = "longitude", nullable = false, precision = 9, scale = 6)
+    @Column(name = "longitude", precision = 9, scale = 6)
     private BigDecimal longitude;
 
-    protected StopCoordinates() {
+    protected Coordinates() {
     }
 
-    public StopCoordinates(BigDecimal latitude, BigDecimal longitude) {
+    public Coordinates(BigDecimal latitude, BigDecimal longitude) {
         this.latitude = latitude;
         this.longitude = longitude;
     }

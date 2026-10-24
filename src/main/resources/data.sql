@@ -14,13 +14,23 @@ insert into user_account (email, display_name, role, created_at) values
     ('trzecia_osoba@student.wroclaw.merito.pl', 'Trzecia Osoba', 'USER', current_timestamp);
 
 
+
 -- ===== LAB 02 · vehicle =====
 
-INSERT INTO vehicle (fleet_number, transport_mode, capacity, active)
+INSERT INTO vehicle (
+    fleet_number,
+    transport_mode,
+    capacity,
+    active,
+    latitude,
+    longitude,
+    last_position_update
+)
 VALUES
-    ('2201', 'TRAM', 200, true),
-    ('2202', 'TRAM', 180, true),
-    ('8101', 'BUS', 100, true);
+    ('2201', 'TRAM', 200, true, 51.110000, 17.030000, '2026-10-24 14:30:00'),
+    ('2202', 'TRAM', 180, true, 51.112000, 17.045000, '2026-10-24 14:31:00'),
+    ('8101', 'BUS', 100, true, 51.098000, 17.037000, '2026-10-24 14:28:00');
+
 
 
 -- ===== LAB 02 · line =====

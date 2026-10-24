@@ -1,6 +1,7 @@
 package pl.wsb.czydojade.stops.entity;
 
 import jakarta.persistence.*;
+import pl.wsb.czydojade.location.entity.Coordinates;
 
 @Entity
 @Table(name = "stop")
@@ -20,13 +21,13 @@ public class Stop {
     private Boolean accessible;
 
     @Embedded
-    private StopCoordinates coordinates;
+    private Coordinates coordinates;
 
     protected Stop() {
     }
 
     public Stop(String code, String name, Boolean accessible,
-                StopCoordinates coordinates) {
+                Coordinates coordinates) {
         this.code = code;
         this.name = name;
         this.accessible = accessible;
@@ -49,7 +50,7 @@ public class Stop {
         return accessible;
     }
 
-    public StopCoordinates getCoordinates() {
+    public Coordinates getCoordinates() {
         return coordinates;
     }
 }

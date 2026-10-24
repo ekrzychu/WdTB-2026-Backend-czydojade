@@ -1,6 +1,8 @@
 package pl.wsb.czydojade.transport.entity;
 
 import jakarta.persistence.*;
+import pl.wsb.czydojade.location.entity.Coordinates;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "vehicle")
@@ -23,15 +25,25 @@ public class Vehicle {
     @Column(name = "active", nullable = false)
     private Boolean active;
 
+    @Embedded
+    private Coordinates currentPosition;
+
+    @Column(name = "last_position_update")
+    private LocalDateTime lastPositionUpdate;
+
     protected Vehicle() {
     }
 
     public Vehicle(String fleetNumber, TransportMode transportMode,
-                   Integer capacity, Boolean active) {
+                   Integer capacity, Boolean active,
+                   Coordinates currentPosition,
+                   LocalDateTime lastPositionUpdate) {
         this.fleetNumber = fleetNumber;
         this.transportMode = transportMode;
         this.capacity = capacity;
         this.active = active;
+        this.currentPosition = currentPosition;
+        this.lastPositionUpdate = lastPositionUpdate;
     }
 
     public Long getId() {
@@ -52,5 +64,13 @@ public class Vehicle {
 
     public Boolean getActive() {
         return active;
+    }
+
+    public Coordinates getCurrentPosition() {
+        return currentPosition;
+    }
+
+    public LocalDateTime getLastPositionUpdate() {
+        return lastPositionUpdate;
     }
 }
