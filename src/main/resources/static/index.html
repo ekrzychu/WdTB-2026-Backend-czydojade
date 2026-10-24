@@ -56,13 +56,25 @@
     <h3>Zmiany w projekcie</h3>
     <ul>
       <li><b>LAB 01:</b> nadaliśmy projektowi nazwę CzyDojade, zmieniliśmy pakiet główny, klasę startową i artifactId, ustawiliśmy wersję z numerami indeksów, dodaliśmy dwa konta zespołu oraz uzupełniliśmy wizytówkę i README.</li>
+      <li>
+        <b>LAB 02:</b> utworzyliśmy trzy encje JPA:
+        Vehicle (pojazdy), Line (linie komunikacyjne)
+        oraz Stop (przystanki). Dodaliśmy enum TransportMode,
+        klasę StopCoordinates z adnotacją @Embeddable
+        oraz przykładowe rekordy do bazy H2.
+      </li>
     </ul>
     <p class="muted">Na kolejnych laboratoriach dopisujcie tu kolejne punkty.</p>
   </section>
 
   <section class="card">
     <h2>1. Zajrzyjcie do bazy danych</h2>
-    <p>Aplikacja ma wbudowaną bazę H2. Na start jest w niej jedna tabela, <code>user_account</code>, z kontami z pliku <code>data.sql</code>.</p>
+    <p>
+      Aplikacja wykorzystuje bazę H2.
+      Zawiera tabelę kont użytkowników <code>user_account</code> oraz
+      trzy tabele projektu: <code>vehicle</code>, <code>line</code> i <code>stop</code>.
+      Przykładowe rekordy wczytywane są z pliku <code>data.sql</code>.
+    </p>
     <table>
       <tr><td>JDBC URL</td><td><code>jdbc:h2:file:./data/wdtb</code></td></tr>
       <tr><td>Użytkownik</td><td><code>sa</code></td></tr>
